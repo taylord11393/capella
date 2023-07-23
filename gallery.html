@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<meta name="viewport" content="width=device-width", charset="utf-8">
+  <head>
+    <title>Invitation Page</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <script language="javascript">
+      function MouseRollover(MyImage) {
+        // Add an opaque background to the desc element on your own
+        // It will appear as a roll over
+        MyImage.childNodes[3].style.opacity = 1;
+      }
+
+      function MouseOut(MyImage) {
+        MyImage.childNodes[3].style.opacity = 0;
+      }
+    </script>
+  </head>
+  <body>
+    <header>
+      <div class="top">
+        <a class="logo" href="index.html">CapellaVolunteers <span class="dotcom">.org</span>
+        </a>
+      </div>
+      <nav>
+        <ul class="topnav">
+          <li>
+            <a href="index.html">Home</a>
+          </li>
+          <li>
+            <a href="invitation.html">Invitation</a>
+          </li>
+          <li>
+            <a href="volunteer.html">Volunteers</a>
+          </li>
+          <li>
+            <a href="gallery.html" class="active">Gallery</a>
+          </li>
+          <li>
+            <a href="registration.html">Registration</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <section id="gallery">
+      <div class="gallery" onMouseOver="MouseRollover(this)" onMouseOut="MouseOut(this)">
+        <a target="_blank" href="images/firefighter.jpg">
+          <img src="images/firefighter.jpg" alt="firefighter" width="300" height="200">
+        </a>
+        <div class="desc">Firefighter</div>
+      </div>
+      <div class="gallery" onMouseOver="MouseRollover(this)" onMouseOut="MouseOut(this)">
+        <a target="_blank" href="images/work.jpg">
+          <img src="images/work.jpg" alt="work" width="300" height="200">
+        </a>
+        <div class="desc">Work</div>
+      </div>
+      <div class="gallery" onMouseOver="MouseRollover(this)" onMouseOut="MouseOut(this)">
+        <a target="_blank" href="images/silhouette.jpg">
+          <img src="images/silhouette.jpg" alt="silhouette" width="300" height="200">
+        </a>
+        <div class="desc">Silhouette</div>
+      </div>
+      <div class="gallery" onMouseOver="MouseRollover(this)" onMouseOut="MouseOut(this)">
+        <a target="_blank" href="images/event.jpg">
+          <img src="images/event.jpg" alt="event" width="300" height="200">
+        </a>
+        <div class="desc">Event</div>
+      </div>
+    </section>
+    <footer>This events site is for IT3515 tasks. </footer>
+  </body>
+</html>

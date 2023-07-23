@@ -1,0 +1,130 @@
+<!DOCTYPE>
+<html lang="en-US">
+<head>
+    <title>Invitation Page</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <script>
+        let invitation = {};
+        let recipientNames = []; 
+        function disableForm(n){
+            document.getElementById("form").style.display = "none";
+            var html = "";
+            for(var i=0; i < n; i++) {
+                html += "<lable>Recipient Name "+ (i + 1) +" <br> <\label><input type = 'text' class = 'name' > <br>";
+            }
+            html += "<input type = 'submit' id = 'recipientNamesSubmit' >"
+            var special = document.getElementById("RecipientNamesForm");
+            special.innerHTML = html;
+        }
+
+
+        function fillInvitations(){
+            console.log("Start here");
+            n = parseInt(invitation["NumberOfRecipient"]);
+            for (var i =0; i < n; i++) {
+                var name = document.getElementsByClassName("name")[i].value;
+                if(name == "") { 
+                    alert("All fields are required!.");
+                    return false;
+                }
+                recipientNames.push(name);
+            }
+            console.log(recipientNames)
+            var html = "";
+            for(var i = 0; i< n; i++) {
+                html += "Hello Recipient "+recipientNames[i]+"<br><br> You have been invited to volunteer for an event held by organization "+ invitation["OrganizationName"] + " on " + invitation["EventDate"] + " Please come on the following website: " + invitation["WebsiteURL"] + " to sign up as a volunteer. <br><br> Thanks! <br>" + invitation["HostName"] + "<br><br>";
+            }
+            document.getElementById("placeholderContent").style.display = "none";
+            var special = document.getElementById("Content");
+            special.innerHTML = html;
+            return false;
+        }
+
+
+        function create_invitation() //Function to replace placeholders in invitation
+        {
+                // Storing Number of Recipient in a dictionary
+                invitation["NumberOfRecipient"] = document.getElementById("recipientName_form").value;
+
+                // Storing Organization Name
+                invitation["OrganizationName"] = document.getElementById("organizationName_form").value;
+
+                // Storing Event Date
+                invitation["EventDate"] = document.getElementById("eventDate_form").value;
+
+                // Storing Website URL
+                invitation["WebsiteURL"] = document.getElementById("websiteURL_form").value;
+
+                // Storing Host Name 
+                invitation["HostName"] = document.getElementById("hostName_form").value;
+
+                // Performing Some Validation
+                if(invitation["NumberOfRecipient"] == "" || 
+                   invitation["OrganizationName"] == "" || 
+                   invitation["EventDate"] == "" || 
+                   invitation["WebsiteURL"] == "" ||
+                   invitation["HostName"] == "") {
+                    alert("All fields are required!.");
+                return false
+                }
+
+                // Making sure the Number of Recipient input is a Number
+                if(isNaN(invitation["NumberOfRecipient"])) {
+                    alert("Enter a Numeric for the Number Of Recipient Field.");
+                    return false;
+                }
+            disableForm(invitation["NumberOfRecipient"]);
+            return false;
+        }  
+    </script>
+</head>
+<body>
+  
+    <header>
+        <div class="top">
+            <a class="logo" href="index.html">CapellaVolunteers<span class="dotcom">.org</span></a>
+        </div>
+        <nav>
+            <ul class="topnav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="invitation.html" class="active">Invitation</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="registration.html">Registration</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <section id="pageForm">
+        <form id = "form" action="#" onsubmit="return create_invitation();">
+          
+            <label for="recipientName_form">Number Of Recipients: </label>
+            <input type="number" name="recipientName_form" id="recipientName_form" placeholder="Enter your Recipient Number" /> <br>
+            <label for="organizationName_form">Organization name: </label>
+            <input type="text" name="organizationName_form" id="organizationName_form" placeholder="Enter your Organization Name" /> <br>
+            <label for="eventDate_form">Event Date: </label>
+            <input type="text" name="eventDate_form" id="eventDate_form" placeholder="Enter your Event Date" /> <br>
+            <label for="websiteURL_form">URL: </label>
+            <input type="text" name="websiteURL_form" id="websiteURL_form" placeholder="Enter your Website URL" /> <br>
+            <label for="hostName_form">Host name: </label>
+            <input type="text" name="hostName_form" id="hostName_form" placeholder="Host Name" /> <br>
+            <input type="submit" value="Submit"> <br>
+        </form>
+        <form id = "RecipientNamesForm" onsubmit="return fillInvitations()">
+            
+        </form>
+    </section>
+    <article id="placeholderContent">
+        Hello <span id="recipientName">recipientName</span>! <br/> <br/> 
+        You have been invited to volunteer for an event held by <span id="organizationName">organizationName </span> on <span id="eventDate">eventDate</span>. Please come to the following website: <span id="websiteURL">websiteURL</span> to sign up as a volunteer.
+        <br/>
+        <br/> Thanks!
+        <br/>
+        <br/>
+        <span id="hostName">hostName</span>
+    </article>
+    <article id = "Content"></article>
+    <footer>This events site is for IT-FP3215 tasks.</footer>
+</body>
+
+</html>
+
